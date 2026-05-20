@@ -1,0 +1,97 @@
+.hero {
+  background: linear-gradient(135deg, #102033 0%, #25384d 55%, #35566a 100%);
+  color: #fff;
+  min-height: 58vh;
+  display: flex;
+  align-items: center;
+}
+
+.heroInner {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  color: #9fd3ff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.subtitle {
+  max-width: 720px;
+  font-size: 20px;
+  line-height: 1.75;
+  margin: 24px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.band {
+  background: #f4f7fa;
+  padding: 32px 16px;
+}
+
+.grid {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #d9e1ea;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 150px;
+  color: #172331;
+}
+
+.card span {
+  display: block;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  margin: 0;
+  color: #465568;
+}
+
+.contentGrid {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 64px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.list {
+  padding-left: 20px;
+}
+
+@media (max-width: 780px) {
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .grid,
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}

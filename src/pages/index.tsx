@@ -5,124 +5,92 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
 
-type FocusArea = {
+type Card = {
   title: string;
   label: string;
   description: string;
   to: string;
 };
 
-type ProjectCard = {
-  title: string;
-  meta: string;
-  description: string;
-  to: string;
-};
-
-type NoteItem = {
-  title: string;
-  scope: string;
-  to: string;
-};
-
-const focusAreas: FocusArea[] = [
+const focusAreas: Card[] = [
   {
     title: 'Robotics',
-    label: 'VEX / Control',
-    description: 'Pushback、VEX U、路径规划、运动控制与实车调参记录。',
-    to: '/docs/robotics/intro',
+    label: 'VEX / VEX-U / Control',
+    description: '机器人竞赛、自动程序、传感器校准、路径规划和控制系统。',
+    to: '/notes/robotics/intro',
   },
   {
-    title: 'Software',
-    label: 'Web / Systems',
-    description: 'GitHub、Docusaurus、TypeScript、工程化和系统基础笔记。',
-    to: '/docs/cs/intro',
+    title: 'Projects',
+    label: '机器人项目 / 音乐作品',
+    description: '按照项目类型整理公开作品，避免把不同内容混在同一个列表里。',
+    to: '/projects',
   },
   {
-    title: 'Music',
-    label: 'Rap / AI Vocal',
-    description: '歌曲、MV、AI Vocal Workflow 与媒体资产发布流程。',
-    to: '/docs/music/intro',
-  },
-];
-
-const projects: ProjectCard[] = [
-  {
-    title: 'Pushback Robotics',
-    meta: 'VEX 2025-2026 / C++',
-    description: '机器人源码快照、自动路径日志、P0 问题和下一轮调参方向。',
-    to: '/docs/robotics/pushback',
-  },
-  {
-    title: 'SHELL Workspace',
-    meta: 'Docusaurus / GitHub Pages',
-    description: '这个站点本身：个人文档、作品入口、OSS/CDN 媒体发布预留。',
-    to: '/docs/intro',
-  },
-  {
-    title: 'Music Archive',
-    meta: 'Writing / MV / OSS',
-    description: '音乐作品、歌词、MV 文件和创作流程的长期归档入口。',
-    to: '/docs/music/songs',
+    title: 'Course',
+    label: '课程学习',
+    description: '整理 Math & Physics、Engineering Drawing 等学科内容。',
+    to: '/notes/math-physics/intro',
   },
 ];
 
-const notes: NoteItem[] = [
+const featured: Card[] = [
   {
-    title: 'Pushback Skill Run Analysis',
-    scope: 'Robotics debug',
-    to: '/docs/robotics/pushback-skill-analysis',
+    title: 'Pushback',
+    label: '机器人项目',
+    description: '2025-2026 V5RC 赛季项目，重点是自动程序、底盘控制和现场调试。',
+    to: '/notes/robotics/pushback',
   },
   {
-    title: 'Git / GitHub Workflow',
-    scope: 'Engineering notes',
-    to: '/docs/cs/git-github',
+    title: 'VEX U 第三方传感器技术栈',
+    label: '技术文章',
+    description: '关于 VEX U 第三方传感器、外部处理器、通信和算法路线的 Blog。',
+    to: '/blog/vex-u-third-party-sensors',
   },
   {
-    title: 'AI Vocal Workflow',
-    scope: 'Music production',
-    to: '/docs/music/ai-vocal-workflow',
+    title: '音乐与创作',
+    label: '音乐作品',
+    description: '展示 SHELL.果壳 的公开歌曲，以及 Hip-hop / Rap 与 AI 音乐工作流探索。',
+    to: '/music',
   },
 ];
 
 export default function Home(): React.ReactNode {
-  const portraitUrl = useBaseUrl('/img/shell-photo.png');
+  const portraitUrl = useBaseUrl('/img/source-assets/phot.png');
 
   return (
-    <Layout
-      title="Home"
-      description="SHELL Workspace personal portfolio and documentation site">
+    <Layout title="Home" description="SHELL Workspace 个人工程档案系统">
       <main className={styles.page}>
         <section className={styles.hero}>
           <div className={styles.heroContent}>
-            <p className={styles.kicker}>Engineer / Robotics Programmer / Creator</p>
+            <p className={styles.kicker}>个人工程档案系统</p>
             <h1>SHELL Workspace</h1>
             <p className={styles.subtitle}>
-              一个用于记录机器人、软件工程、AI 工具链、音乐创作和个人项目的长期工作空间。
+              这里整理 SHELL 的机器人项目、软件工程、课程学习、音乐作品和技术文章。
+              网站优先保持结构清晰、内容可维护、路径可长期使用。
             </p>
             <div className={styles.heroActions}>
-              <Link className={clsx(styles.button, styles.primaryButton)} to="/docs/intro">
-                进入文档
+              <Link className={clsx(styles.button, styles.primaryButton)} to="/projects">
+                查看 Projects
               </Link>
-              <Link className={clsx(styles.button, styles.secondaryButton)} to="/projects">
-                查看项目
+              <Link className={clsx(styles.button, styles.secondaryButton)} to="/music">
+                查看 Music
               </Link>
             </div>
           </div>
 
-          <aside className={styles.identityPanel} aria-label="SHELL identity overview">
-            <img src={portraitUrl} alt="SHELL performing on stage" />
+          <aside className={styles.identityPanel} aria-label="SHELL 公开身份概览">
+            <img src={portraitUrl} alt="SHELL 公开展示照片" />
             <div className={styles.identityText}>
               <span>SHELL</span>
-              <p>Robotics / Software / Music</p>
+              <p>Robotics / Software / Music / Course</p>
             </div>
           </aside>
         </section>
 
-        <section className={styles.focusSection} aria-label="Focus areas">
+        <section className={styles.focusSection} aria-label="当前方向">
           <div className={styles.sectionHeader}>
-            <p>Current Lines</p>
-            <h2>技术项目和创作身份放在同一个工作台上。</h2>
+            <p>当前方向</p>
+            <h2>把公开项目、技术文章、课程笔记和创作记录整理成长期档案。</h2>
           </div>
           <div className={styles.focusGrid}>
             {focusAreas.map((area) => (
@@ -135,32 +103,17 @@ export default function Home(): React.ReactNode {
           </div>
         </section>
 
-        <section className={styles.projectSection} aria-label="Featured projects">
+        <section className={styles.projectSection} aria-label="精选入口">
           <div className={styles.sectionHeader}>
-            <p>Featured Work</p>
-            <h2>先展示正在形成体系的东西。</h2>
+            <p>精选入口</p>
+            <h2>先展示已经有真实内容的项目、文章和音乐作品。</h2>
           </div>
           <div className={styles.projectGrid}>
-            {projects.map((project) => (
+            {featured.map((project) => (
               <Link className={clsx(styles.projectCard, 'clean-link')} to={project.to} key={project.title}>
-                <span>{project.meta}</span>
+                <span>{project.label}</span>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.notesSection} aria-label="Latest notes">
-          <div>
-            <p className={styles.kicker}>Notes</p>
-            <h2>最近整理入口</h2>
-          </div>
-          <div className={styles.noteList}>
-            {notes.map((note) => (
-              <Link className={clsx(styles.noteItem, 'clean-link')} to={note.to} key={note.title}>
-                <span>{note.scope}</span>
-                <strong>{note.title}</strong>
               </Link>
             ))}
           </div>

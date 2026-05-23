@@ -1,16 +1,19 @@
 ---
-title: Pure Pursuit
+title: Pure Pursuit 路径跟踪
 ---
 
-# Pure Pursuit
+# Pure Pursuit 路径跟踪
 
-Pure Pursuit 是常见的路径跟踪算法，适合整理为可复用的机器人运动控制笔记。
+Pure Pursuit 是移动机器人路径跟踪中的常见算法。本页用于整理算法概念、参数选择和在 VEX 项目中的调试经验。
 
-待补充主题：
+## 核心问题
 
-- Lookahead distance 的选择。
-- 路径点插值与曲率计算。
-- 与 odometry / localization 的关系。
-- 实车调参流程。
+- 如何选择 lookahead distance。
+- 如何把路径点转换为机器人可执行的转向和速度命令。
+- 如何处理终点收敛、急弯和定位噪声。
 
-TODO: SHELL 补充公式推导、代码片段和实测数据。
+## 待补充
+
+- TODO: 补充 Pushback 项目中的路径样例。
+- TODO: 补充参数调试记录和失败案例。
+- TODO: 补充代码结构说明。

@@ -1,9 +1,13 @@
 ---
-title: Engineering Drawing
+title: Engineering Drawing 工程制图
 ---
 
-# Engineering Drawing
+# Engineering Drawing 工程制图
 
-本页用于整理工程制图、机械表达、尺寸标注和图纸规范。
+Engineering Drawing 栏目用于整理工程图纸、投影、尺寸标注和制图规范。
 
-TODO: SHELL 补充课程笔记、图纸示例和常见错误。
+## 待补充
+
+- TODO: 补充课程笔记。
+- TODO: 补充图纸样例和规范说明。
+- TODO: 确认是否需要单独放置图片资源。

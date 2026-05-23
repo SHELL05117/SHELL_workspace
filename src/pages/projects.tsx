@@ -1,41 +1,82 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
 
-const projects = [
+const roboticsProjects = [
   {
-    name: 'SHELL Workspace',
-    status: 'MVP',
-    description: 'Docusaurus 文档站、GitHub Pages 预览、OSS/CDN 资源预留流程。',
+    name: 'Pushback',
+    status: '2025-2026 V5RC',
+    description: 'SHELL 在 2026 年 1 月至 2 月于成都 / 无锡参与的 VEX 机器人项目，重点围绕自动程序、底盘控制、传感器校准和现场调试展开。',
+    href: '/notes/robotics/pushback_document',
   },
   {
-    name: 'Pushback Robotics',
-    status: 'Archived Source',
-    description: '机器人源码快照、skill/auton 运行日志分析和后续调参记录。',
-  },
-  {
-    name: 'Music Release Workflow',
-    status: 'Planning',
-    description: '音乐作品、MV、封面、OSS 媒体发布与网页引用规范。',
+    name: 'VEX U 第三方传感器技术栈',
+    status: '技术文章',
+    description: '面向 VEX U 的第三方传感器、外部处理器、通信、供电和算法路线规划。',
+    href: '/blog/vex-u-third-party-sensors',
   },
 ];
 
+const musicProjects = [
+  {
+    name: 'SHELL.果壳 音乐作品',
+    status: '公开作品',
+    description: '说唱、流行乐、歌词写作、编曲、混音与 AI 音乐工作流探索。',
+    href: '/music',
+  },
+];
+
+function ProjectCard({
+  name,
+  status,
+  description,
+  href,
+}: {
+  name: string;
+  status: string;
+  description: string;
+  href: string;
+}) {
+  return (
+    <article className="col col--6 margin-bottom--md">
+      <Link className="clean-link" to={href}>
+        <div className="project-card">
+          <strong>{name}</strong>
+          <span>{status}</span>
+          <p>{description}</p>
+        </div>
+      </Link>
+    </article>
+  );
+}
+
 export default function Projects(): React.ReactNode {
   return (
-    <Layout title="Projects" description="SHELL Workspace projects">
+    <Layout title="Projects" description="SHELL Workspace 公开作品集">
       <main className="container margin-vert--lg">
         <h1>Projects</h1>
-        <p>这里用于集中展示 SHELL 的工程项目、学习项目和作品发布流程。</p>
-        <div className="row">
-          {projects.map((project) => (
-            <article className="col col--4 margin-bottom--md" key={project.name}>
-              <div className="project-card">
-                <strong>{project.name}</strong>
-                <span>{project.status}</span>
-                <p>{project.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <p>
+          Projects 暂时分为两个大类：机器人项目与音乐作品。每个子项只展示已有真实内容的公开入口，
+          暂未提供信息的预留栏目不展示。
+        </p>
+
+        <section className="project-section">
+          <h2>机器人项目</h2>
+          <div className="row">
+            {roboticsProjects.map((project) => (
+              <ProjectCard key={project.name} {...project} />
+            ))}
+          </div>
+        </section>
+
+        <section className="project-section">
+          <h2>音乐作品</h2>
+          <div className="row">
+            {musicProjects.map((project) => (
+              <ProjectCard key={project.name} {...project} />
+            ))}
+          </div>
+        </section>
       </main>
     </Layout>
   );

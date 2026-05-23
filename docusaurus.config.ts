@@ -3,7 +3,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'SHELL Workspace',
-  tagline: 'Robotics, Software, AI, Systems, and Music',
+  tagline: 'Robotics, Software, Course, and Music',
   favicon: 'img/favicon.svg',
   url: 'https://SHELL05117.github.io',
   baseUrl: '/SHELL_workspace/',
@@ -27,10 +27,16 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: 'notes',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/SHELL05117/SHELL_workspace/tree/main/',
         },
-        blog: false,
+        blog: {
+          routeBasePath: 'blog',
+          showReadingTime: true,
+          blogSidebarTitle: '全部文章',
+          blogSidebarCount: 'ALL',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -39,7 +45,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/shell-workspace-og.svg',
+    image: 'img/source-assets/LOGO.png',
     navbar: {
       title: 'SHELL Workspace',
       logo: {
@@ -48,14 +54,14 @@ const config: Config = {
       },
       items: [
         {to: '/', label: 'Home', position: 'left'},
+        {to: '/projects', label: 'Projects', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Notes',
         },
-        {to: '/projects', label: 'Projects', position: 'left'},
-        {to: '/docs/music/intro', label: 'Music', position: 'left'},
         {to: '/about', label: 'About', position: 'left'},
         {
           href: 'https://github.com/SHELL05117/SHELL_workspace',
@@ -70,16 +76,17 @@ const config: Config = {
         {
           title: 'Workspace',
           items: [
-            {label: 'Docs', to: '/docs/intro'},
+            {label: 'Notes', to: '/notes/robotics/intro'},
             {label: 'Projects', to: '/projects'},
+            {label: 'Blog', to: '/blog'},
             {label: 'About', to: '/about'},
+            {label: 'Archive', to: '/archive'},
           ],
         },
         {
-          title: 'Deploy',
+          title: 'Status',
           items: [
             {label: 'GitHub Pages', href: 'https://SHELL05117.github.io/SHELL_workspace/'},
-            {label: 'Assets Placeholder', href: 'https://assets.shellworkspace.cn'},
           ],
         },
       ],

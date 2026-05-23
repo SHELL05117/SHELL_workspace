@@ -4,14 +4,14 @@ title: Robotics
 
 # Robotics
 
-这里记录机器人相关项目、控制算法、调试经验和比赛复盘。
+Robotics 是 SHELL Workspace 当前最重要的项目知识库，主要保存 VEX / VEX-U、Pushback、机器人控制、路径规划、运动控制和传感器调试相关内容。
 
-优先整理方向：
+## 当前重点
 
-- Pushback 项目源码归档与 skill/auton 运行分析。
-- VEX U 项目结构与工程记录。
-- Pure Pursuit 路径跟踪。
-- Motion Control 运动控制。
-- 嵌入式调试与机械结构备忘。
+- **Pushback**：2025-2026 V5RC 赛季项目，保留简版展示页和完整项目文档。
+- **VEX / VEX-U**：机器人竞赛、程序开发、第三方传感器和嵌入式控制路线。
+- **Pure Pursuit**：路径跟踪、PID、odometry 和控制系统调试。
 
-TODO: SHELL 补充真实机器人项目背景和图片。
+## 阅读建议
+
+如果只是了解项目，可以先看 [Pushback 简版](./pushback)。如果需要完整技术说明，可以看 [Pushback 项目文档](./pushback_document)。

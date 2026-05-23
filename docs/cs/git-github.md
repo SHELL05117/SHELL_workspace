@@ -1,24 +1,21 @@
 ---
-title: Git / GitHub
+title: Git / GitHub 工作流
 ---
 
-# Git / GitHub
+# Git / GitHub 工作流
 
-本项目的源码、文档和部署配置都由 GitHub 管理。
+本页记录 SHELL Workspace 的 Git / GitHub 使用方式。
 
-基础工作流：
+## 基本原则
+
+- 源码和 Markdown 由 Git 管理。
+- 生成产物、依赖目录、本地密钥和大媒体不提交。
+- GitHub Pages 用于网站预览和发布。
+- 重要结构调整先通过 build 验证。
+
+## 常用检查
 
 ```bash
-git status
-git add .
-git commit -m "init shell workspace"
-git push origin main
+git status --short
+npm run build
 ```
-
-注意事项：
-
-- 不提交 `.env`、AccessKey、Token。
-- 不提交 `source/` 下的大型媒体文件。
-- 大文件走 OSS，仓库只保存引用路径和文档说明。
-
-TODO: SHELL 补充常用分支策略。

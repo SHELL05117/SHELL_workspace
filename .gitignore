@@ -5,9 +5,12 @@ build/
 .env.local
 .env.*.local
 docs/key.env
+key.env
 .DS_Store
+Thumbs.db
 *.log
 source/
+prompt/
 *.mp4
 *.mov
 *.mkv

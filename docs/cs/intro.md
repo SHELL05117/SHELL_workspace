@@ -1,16 +1,14 @@
 ---
-title: Computer Science
+title: Computer Science 总览
 ---
 
-# Computer Science
+# Computer Science 总览
 
-这里记录软件工程、Web 开发、系统基础、Git/GitHub 和 AI 工具链相关笔记。
+Computer Science 栏目用于整理软件工程、Web 开发、系统基础和协作流程。
 
-第一批建议内容：
+## 当前方向
 
-- Git / GitHub 基础工作流。
-- Docusaurus 静态站搭建。
-- TypeScript / React 工程笔记。
-- 操作系统、网络、构建工具的基础概念。
-
-TODO: SHELL 补充当前学习路线和项目链接。
+- Git / GitHub 工作流。
+- Docusaurus 与静态网站维护。
+- TypeScript / React 基础。
+- 系统基础和长期学习记录。

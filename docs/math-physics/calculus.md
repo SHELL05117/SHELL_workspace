@@ -1,17 +1,21 @@
 ---
-title: Calculus
+title: Calculus 微积分
 ---
 
-# Calculus
+# Calculus 微积分
 
-本页用于整理微积分相关概念。
+本页用于整理微积分中的核心概念和应用场景。
 
-关键词示例：
+## 关键词
 
-- 极限（limit）
-- 导数（derivative）
-- 梯度（gradient）
-- 方向导数（directional derivative）
-- 全微分（total differential）
+- 极限 limit
+- 导数 derivative
+- 积分 integral
+- 梯度 gradient
+- 方向导数 directional derivative
+- 全微分 total differential
 
-TODO: SHELL 补充具体章节、公式推导和题目。
+## 待补充
+
+- TODO: 补充课程笔记和例题。
+- TODO: 补充与机器人控制相关的应用。

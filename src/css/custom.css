@@ -96,6 +96,65 @@ video {
   margin-top: 48px;
 }
 
+.project-section,
+.music-section {
+  margin-top: 48px;
+}
+
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.music-card {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ifm-background-surface-color);
+}
+
+.music-card img,
+.music-cover-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  background: linear-gradient(135deg, #14232d, #273c45);
+  color: #edf4f6;
+  font-weight: 700;
+}
+
+.music-card > div {
+  padding: 18px;
+}
+
+.music-card strong,
+.music-card span {
+  display: block;
+}
+
+.music-card span {
+  margin: 8px 0 12px;
+  color: var(--ifm-color-primary);
+  font-size: 14px;
+}
+
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.keyword-list span {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--ifm-color-emphasis-100);
+}
+
 @media (max-width: 860px) {
   .about-hero {
     grid-template-columns: 1fr;
@@ -103,5 +162,9 @@ video {
 
   .about-hero h1 {
     font-size: 38px;
+  }
+
+  .music-grid {
+    grid-template-columns: 1fr;
   }
 }

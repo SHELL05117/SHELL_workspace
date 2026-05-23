@@ -6,7 +6,8 @@ const roboticsProjects = [
   {
     name: 'Pushback',
     status: '2025-2026 V5RC',
-    description: 'SHELL 在 2026 年 1 月至 2 月于成都 / 无锡参与的 VEX 机器人项目，重点围绕自动程序、底盘控制、传感器校准和现场调试展开。',
+    description:
+      'SHELL 在 2026 年 1 月至 2 月于成都 / 无锡参与的 VEX 机器人项目，重点围绕自动程序、底盘控制、传感器校准和现场调试展开。',
     href: '/notes/robotics/pushback_document',
   },
   {
@@ -53,12 +54,15 @@ function ProjectCard({
 export default function Projects(): React.ReactNode {
   return (
     <Layout title="Projects" description="SHELL Workspace 公开作品集">
-      <main className="container margin-vert--lg">
-        <h1>Projects</h1>
-        <p>
-          Projects 暂时分为两个大类：机器人项目与音乐作品。每个子项只展示已有真实内容的公开入口，
-          暂未提供信息的预留栏目不展示。
-        </p>
+      <main className="stage-page container margin-vert--lg">
+        <header className="page-header archive-panel">
+          <p className="stage-kicker">Project Cards</p>
+          <h1>Projects</h1>
+          <p>
+            Projects 暂时分为两个大类：机器人项目与音乐作品。每个子项只展示已经有真实内容的公开入口，
+            暂未提供信息的预留栏目不展示。
+          </p>
+        </header>
 
         <section className="project-section">
           <h2>机器人项目</h2>

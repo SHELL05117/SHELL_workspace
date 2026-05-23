@@ -1,46 +1,97 @@
 .page {
   min-height: 100vh;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 78% 12%, rgba(68, 112, 129, 0.2), transparent 28rem),
-    linear-gradient(180deg, #081016 0%, #0f171d 48%, #11161b 100%);
-  color: #edf4f6;
+    radial-gradient(circle at 72% 8%, rgba(190, 242, 255, 0.12), transparent 26rem),
+    radial-gradient(circle at 18% 38%, rgba(130, 23, 34, 0.12), transparent 22rem),
+    linear-gradient(180deg, #020304 0%, #080b0d 38%, #101416 100%);
+  color: #f2f4f1;
 }
 
 .hero {
-  width: min(1160px, calc(100% - 40px));
+  position: relative;
+  width: min(1220px, calc(100% - 40px));
   min-height: calc(100vh - 64px);
   margin: 0 auto;
-  padding: 84px 0 68px;
+  padding: 92px 0 72px;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 420px);
-  gap: 56px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 480px);
+  gap: 64px;
   align-items: center;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto -18vw 0;
+  height: 42%;
+  z-index: -3;
+  background:
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.035)),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 88px);
+  transform: perspective(900px) rotateX(62deg);
+  transform-origin: bottom;
+  opacity: 0.62;
+}
+
+.stageWash {
+  position: absolute;
+  inset: 0 -12vw;
+  z-index: -4;
+  background:
+    radial-gradient(ellipse at 68% 42%, rgba(220, 250, 255, 0.15), transparent 20rem),
+    radial-gradient(ellipse at 50% 105%, rgba(255, 255, 255, 0.08), transparent 34rem),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.9), transparent 38%, rgba(0, 0, 0, 0.82));
+}
+
+.spotlight {
+  position: absolute;
+  top: -20%;
+  left: 8%;
+  width: 72%;
+  height: 128%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    conic-gradient(from 222deg at 50% 0%, transparent 0deg, rgba(222, 252, 255, 0.02) 9deg, rgba(226, 252, 255, 0.22) 18deg, rgba(226, 252, 255, 0.04) 30deg, transparent 42deg),
+    radial-gradient(ellipse at 68% 58%, rgba(220, 250, 255, 0.22), transparent 18rem);
+  filter: blur(1px);
+  transform-origin: 52% 0%;
+  animation: spotlightSweep 1100ms cubic-bezier(0.22, 0.78, 0.28, 1) forwards;
+  mix-blend-mode: screen;
 }
 
 .heroContent {
-  max-width: 760px;
+  max-width: 730px;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroCopyIn 520ms ease forwards;
+  animation-delay: 1180ms;
 }
 
 .kicker {
   margin: 0 0 16px;
-  color: #86c7d4;
+  color: #bdf7ff;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 64px;
-  line-height: 1.05;
+  color: #f9fbf7;
+  font-size: clamp(44px, 7vw, 78px);
+  line-height: 0.98;
   letter-spacing: 0;
+  text-shadow: 0 18px 48px rgba(0, 0, 0, 0.72);
 }
 
 .subtitle {
   max-width: 680px;
   margin: 24px 0 0;
-  color: #bdcbd1;
+  color: #b8c2c4;
   font-size: 19px;
   line-height: 1.9;
 }
@@ -50,21 +101,38 @@
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 36px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroCopyIn 440ms ease forwards;
+  animation-delay: 1420ms;
 }
 
 .button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 46px;
   padding: 0 20px;
+  overflow: hidden;
   border-radius: 8px;
-  font-weight: 700;
+  font-weight: 800;
   transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease,
-    color 160ms ease;
+    transform 170ms ease,
+    border-color 170ms ease,
+    background 170ms ease,
+    color 170ms ease,
+    box-shadow 170ms ease;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: -30% auto -30% -40%;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  transform: skewX(-18deg);
+  opacity: 0;
 }
 
 .button:hover {
@@ -72,100 +140,154 @@
   text-decoration: none;
 }
 
+.button:hover::after {
+  opacity: 1;
+  animation: localSheen 620ms ease;
+}
+
 .primaryButton {
-  background: #d7f4ef;
-  color: #081016;
-  border: 1px solid #d7f4ef;
+  background: #e9fbf8;
+  color: #050607;
+  border: 1px solid #e9fbf8;
+  box-shadow: 0 0 28px rgba(181, 244, 255, 0.15);
 }
 
 .primaryButton:hover {
   background: #ffffff;
-  color: #081016;
+  color: #050607;
+  box-shadow: 0 0 36px rgba(181, 244, 255, 0.28);
 }
 
 .secondaryButton {
   color: #edf4f6;
-  border: 1px solid rgba(237, 244, 246, 0.24);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(237, 244, 246, 0.22);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .secondaryButton:hover {
-  border-color: rgba(237, 244, 246, 0.58);
-  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(189, 247, 255, 0.62);
+  background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
+  box-shadow: 0 0 24px rgba(181, 244, 255, 0.13);
 }
 
-.identityPanel {
+.posterFrame {
   position: relative;
+  min-height: 620px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(235, 252, 255, 0.16);
   border-radius: 8px;
-  background: #060a0d;
-  min-height: 560px;
+  background: #030405;
+  box-shadow:
+    0 36px 90px rgba(0, 0, 0, 0.66),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+  transform: perspective(1100px) rotateY(-5deg) rotateX(1deg);
 }
 
-.identityPanel img {
-  width: 100%;
-  height: 100%;
-  min-height: 560px;
-  object-fit: cover;
-  object-position: 58% center;
-  opacity: 0.92;
-}
-
-.identityPanel::after {
+.posterFrame::before,
+.posterFrame::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.78) 100%);
+  pointer-events: none;
+}
+
+.posterFrame::before {
+  z-index: 2;
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 18%, transparent 72%, rgba(160, 233, 245, 0.09)),
+    radial-gradient(ellipse at 52% 18%, rgba(255, 255, 255, 0.2), transparent 20rem);
+  opacity: 0;
+  animation: posterLightSettle 1200ms ease forwards;
+  animation-delay: 260ms;
+}
+
+.posterFrame::after {
+  z-index: 3;
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.78) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent 40%, rgba(0, 0, 0, 0.3));
+}
+
+.posterFrame img {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  object-fit: cover;
+  object-position: 50% center;
+  opacity: 0.88;
+  filter: saturate(0.82) contrast(1.08);
+}
+
+.posterGlow {
+  position: absolute;
+  inset: 12% 8% auto;
+  height: 44%;
+  z-index: 1;
+  background: radial-gradient(ellipse, rgba(226, 252, 255, 0.32), transparent 62%);
+  filter: blur(26px);
+  opacity: 0;
+  animation: posterLightSettle 760ms ease forwards;
+  animation-delay: 940ms;
 }
 
 .identityText {
   position: absolute;
-  left: 22px;
-  right: 22px;
+  left: 24px;
+  right: 24px;
   bottom: 22px;
-  z-index: 1;
+  z-index: 4;
 }
 
 .identityText span {
   display: block;
-  font-size: 28px;
-  font-weight: 800;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 900;
 }
 
 .identityText p {
   margin: 8px 0 0;
-  color: #c8d3d8;
+  color: #c7d1d4;
 }
 
 .focusSection,
-.projectSection,
-.notesSection {
+.projectSection {
   width: min(1160px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 76px 0;
+  padding: 78px 0;
 }
 
-.sectionHeader {
-  max-width: 720px;
-  margin-bottom: 28px;
+.focusCard,
+.projectCard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(235, 252, 255, 0.12);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    #090c0e;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .sectionHeader p {
   margin: 0 0 12px;
-  color: #8bb6bf;
+  color: #9defef;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
 }
 
-.sectionHeader h2,
-.notesSection h2 {
+.sectionHeader h2 {
   margin: 0;
-  color: #edf4f6;
-  font-size: 34px;
-  line-height: 1.28;
+  color: #f3f6f1;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.25;
+}
+
+.sectionHeader {
+  max-width: 760px;
+  margin-bottom: 28px;
 }
 
 .focusGrid,
@@ -177,33 +299,52 @@
 
 .focusCard,
 .projectCard {
-  min-height: 210px;
+  min-height: 220px;
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.045);
   color: #edf4f6;
   transition:
     transform 180ms ease,
     border-color 180ms ease,
-    background 180ms ease;
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.focusCard::after,
+.projectCard::after {
+  content: "";
+  position: absolute;
+  inset: -30% auto -30% -42%;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .focusCard:hover,
 .projectCard:hover {
-  transform: translateY(-4px);
-  border-color: rgba(215, 244, 239, 0.38);
-  background: rgba(255, 255, 255, 0.075);
+  transform: translateY(-5px);
+  border-color: rgba(189, 247, 255, 0.42);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+    #0b1012;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.26);
   color: #ffffff;
   text-decoration: none;
+}
+
+.focusCard:hover::after,
+.projectCard:hover::after {
+  opacity: 1;
+  animation: localSheen 680ms ease;
 }
 
 .focusCard small,
 .projectCard span {
   display: block;
-  color: #8bb6bf;
+  color: #9defef;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 18px;
 }
 
@@ -219,71 +360,73 @@
 .focusCard p,
 .projectCard p {
   margin: 0;
-  color: #b8c6cc;
+  color: #b9c3c6;
   line-height: 1.75;
 }
 
-.notesSection {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
-  gap: 36px;
-  padding-bottom: 100px;
-}
-
-.noteList {
-  display: grid;
-  gap: 12px;
-}
-
-.noteItem {
-  display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: 18px;
-  align-items: center;
-  padding: 18px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  color: #edf4f6;
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
   transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease;
+    opacity 620ms ease,
+    transform 620ms ease;
 }
 
-.noteItem:hover {
-  transform: translateY(-2px);
-  border-color: rgba(215, 244, 239, 0.34);
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  text-decoration: none;
+[data-revealed="true"] {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.noteItem span {
-  color: #8bb6bf;
-  font-size: 13px;
-  font-weight: 700;
+@keyframes spotlightSweep {
+  0% {
+    opacity: 0;
+    transform: rotate(-24deg) translateX(-16%);
+  }
+  24% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(10deg) translateX(16%);
+  }
 }
 
-.noteItem strong {
-  color: #ffffff;
-  font-size: 17px;
+@keyframes heroCopyIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes posterLightSettle {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes localSheen {
+  from {
+    transform: translateX(0) skewX(-18deg);
+  }
+  to {
+    transform: translateX(420%) skewX(-18deg);
+  }
 }
 
 @media (max-width: 960px) {
   .hero,
-  .notesSection {
-    grid-template-columns: 1fr;
-  }
-
   .hero {
     min-height: auto;
     padding-top: 64px;
   }
 
-  .identityPanel,
-  .identityPanel img {
-    min-height: 460px;
+  .posterFrame,
+  .posterFrame img {
+    min-height: 520px;
+  }
+
+  .posterFrame {
+    transform: none;
   }
 
   .focusGrid,
@@ -295,31 +438,47 @@
 @media (max-width: 640px) {
   .hero,
   .focusSection,
-  .projectSection,
-  .notesSection {
+  .projectSection {
     width: min(100% - 28px, 1160px);
   }
 
-  .hero h1 {
-    font-size: 42px;
+  .spotlight {
+    left: -4%;
+    width: 86%;
+    opacity: 0.7;
+  }
+
+  .posterFrame,
+  .posterFrame img {
+    min-height: 420px;
   }
 
   .subtitle {
     font-size: 17px;
   }
 
-  .sectionHeader h2,
-  .notesSection h2 {
-    font-size: 27px;
+  .focusSection,
+  .projectSection {
+    padding: 54px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight,
+  .heroContent,
+  .heroActions,
+  .posterFrame::before,
+  .posterGlow,
+  [data-reveal] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
-  .identityPanel,
-  .identityPanel img {
-    min-height: 390px;
-  }
-
-  .noteItem {
-    grid-template-columns: 1fr;
-    gap: 6px;
+  .button:hover,
+  .focusCard:hover,
+  .projectCard:hover {
+    transform: none;
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -54,15 +54,44 @@ const featured: Card[] = [
   },
 ];
 
+function useScrollReveal() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute('data-revealed', 'true');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {threshold: 0.18},
+    );
+
+    targets.forEach((target) => observer.observe(target));
+
+    return () => observer.disconnect();
+  }, []);
+}
+
 export default function Home(): React.ReactNode {
-  const portraitUrl = useBaseUrl('/img/source-assets/phot.png');
+  useScrollReveal();
+  const posterUrl = useBaseUrl('/img/source-assets/海报.png');
 
   return (
     <Layout title="Home" description="SHELL Workspace 个人工程档案系统">
       <main className={styles.page}>
         <section className={styles.hero}>
+          <div className={styles.stageWash} aria-hidden="true" />
+          <div className={styles.spotlight} aria-hidden="true" />
+
           <div className={styles.heroContent}>
-            <p className={styles.kicker}>个人工程档案系统</p>
+            <p className={styles.kicker}>暗色舞台档案系统</p>
             <h1>SHELL Workspace</h1>
             <p className={styles.subtitle}>
               这里整理 SHELL 的机器人项目、软件工程、课程学习、音乐作品和技术文章。
@@ -78,8 +107,9 @@ export default function Home(): React.ReactNode {
             </div>
           </div>
 
-          <aside className={styles.identityPanel} aria-label="SHELL 公开身份概览">
-            <img src={portraitUrl} alt="SHELL 公开展示照片" />
+          <aside className={styles.posterFrame} aria-label="SHELL 人物海报">
+            <div className={styles.posterGlow} aria-hidden="true" />
+            <img src={posterUrl} alt="SHELL 人物海报" />
             <div className={styles.identityText}>
               <span>SHELL</span>
               <p>Robotics / Software / Music / Course</p>
@@ -87,7 +117,7 @@ export default function Home(): React.ReactNode {
           </aside>
         </section>
 
-        <section className={styles.focusSection} aria-label="当前方向">
+        <section className={styles.focusSection} data-reveal aria-label="当前方向">
           <div className={styles.sectionHeader}>
             <p>当前方向</p>
             <h2>把公开项目、技术文章、课程笔记和创作记录整理成长期档案。</h2>
@@ -103,7 +133,7 @@ export default function Home(): React.ReactNode {
           </div>
         </section>
 
-        <section className={styles.projectSection} aria-label="精选入口">
+        <section className={styles.projectSection} data-reveal aria-label="精选入口">
           <div className={styles.sectionHeader}>
             <p>精选入口</p>
             <h2>先展示已经有真实内容的项目、文章和音乐作品。</h2>

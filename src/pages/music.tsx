@@ -47,15 +47,19 @@ const keywords = [
 export default function Music(): React.ReactNode {
   return (
     <Layout title="Music" description="SHELL 的音乐作品与创作系统">
-      <main className="container margin-vert--lg">
-        <h1>音乐与创作</h1>
-        <p>
-          除了技术与工程方向，SHELL 也长期进行 Hip-hop / Rap 创作，并持续探索 AI 音乐制作工作流与数字创作工具。
-        </p>
-        <p>
-          相比传统意义上的“音乐人”定位，他更倾向于把音乐视作一种个人表达系统：
-          歌词、声音、视觉、情绪、代码与技术工具，都可以成为创作的一部分。
-        </p>
+      <main className="stage-page container margin-vert--lg">
+        <header className="page-header archive-panel">
+          <p className="stage-kicker">Stage Records</p>
+          <h1>音乐与创作</h1>
+          <p>
+            除了技术与工程方向，SHELL 也长期进行 Hip-hop / Rap 创作，
+            并持续探索 AI 音乐制作工作流与数字创作工具。
+          </p>
+          <p>
+            相比传统意义上的“音乐人”定位，他更倾向于把音乐视作一种个人表达系统：
+            歌词、声音、视觉、情绪、代码与技术工具，都可以成为创作的一部分。
+          </p>
+        </header>
 
         <section className="music-section">
           <h2>公开歌曲</h2>
@@ -84,7 +88,7 @@ export default function Music(): React.ReactNode {
           </p>
         </section>
 
-        <section className="music-section">
+        <section className="music-section archive-panel">
           <h2>创作风格</h2>
           <ul>
             <li>情绪表达。</li>
@@ -105,7 +109,7 @@ export default function Music(): React.ReactNode {
           </div>
         </section>
 
-        <section className="music-section">
+        <section className="music-section archive-panel">
           <h2>关于创作</h2>
           <p>
             SHELL 对“技术与创作之间的边界”很感兴趣。他认为代码、声音、图像、文字与 AI 工具链，

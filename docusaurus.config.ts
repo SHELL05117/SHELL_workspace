@@ -63,6 +63,7 @@ const config: Config = {
           label: 'Notes',
         },
         {to: '/about', label: 'About', position: 'left'},
+        {to: '/archive', label: 'Archive', position: 'left'},
         {
           href: 'https://github.com/SHELL05117/SHELL_workspace',
           label: 'GitHub',

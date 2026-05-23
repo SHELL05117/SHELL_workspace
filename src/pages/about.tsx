@@ -21,9 +21,10 @@ export default function About(): React.ReactNode {
 
   return (
     <Layout title="About" description="SHELL Workspace 公开身份档案">
-      <main className="container margin-vert--lg">
+      <main className="stage-page container margin-vert--lg">
         <section className="about-hero">
-          <div>
+          <div className="archive-panel">
+            <p className="stage-kicker">Public Profile</p>
             <h1>About SHELL</h1>
             <p>
               SHELL，男，2007 年 10 月出生于中国重庆，现任成都骐闻科技有限公司实习生。
@@ -45,7 +46,7 @@ export default function About(): React.ReactNode {
           <img src={photoUrl} alt="SHELL 公开展示照片" />
         </section>
 
-        <section className="about-section">
+        <section className="about-section archive-panel">
           <h2>公开身份</h2>
           <ul>
             <li>VEX U 程序员。</li>
@@ -55,9 +56,9 @@ export default function About(): React.ReactNode {
           </ul>
         </section>
 
-        <section className="about-section">
+        <section className="about-section archive-panel">
           <h2>当前关注方向</h2>
-          <ul>
+          <ul className="skill-matrix">
             <li>VEX / VEX-U 机器人程序开发。</li>
             <li>C++ 与嵌入式控制。</li>
             <li>机器人路径规划、Pure Pursuit 和运动控制。</li>
@@ -66,7 +67,7 @@ export default function About(): React.ReactNode {
           </ul>
         </section>
 
-        <section className="about-section">
+        <section className="about-section archive-panel">
           <h2>教育与队伍经历</h2>
           <ul>
             <li>高中就读于电子科技大学实验中学。</li>
@@ -77,7 +78,7 @@ export default function About(): React.ReactNode {
           </ul>
         </section>
 
-        <section className="about-section">
+        <section className="about-section archive-panel">
           <h2>机器人职责</h2>
           <ul>
             <li>机器人程序开发与自动阶段逻辑设计。</li>
@@ -88,14 +89,14 @@ export default function About(): React.ReactNode {
 
         <section className="about-section">
           <h2>竞赛与荣誉</h2>
-          <ul>
+          <ol className="timeline-list">
             {honors.map((honor) => (
               <li key={honor}>{honor}</li>
             ))}
-          </ul>
+          </ol>
         </section>
 
-        <section className="about-section">
+        <section className="about-section archive-panel">
           <h2>实习与工程经历</h2>
           <p>
             SHELL 在成都骐闻科技有限公司担任在职实习生，接触机器人教育、竞赛项目、
@@ -104,7 +105,7 @@ export default function About(): React.ReactNode {
           </p>
         </section>
 
-        <section className="about-section">
+        <section className="about-section archive-panel">
           <h2>校园与新媒体经历</h2>
           <p>
             高中阶段，SHELL 曾担任学生会新媒体部成员，参与校园新媒体内容制作、
@@ -113,7 +114,7 @@ export default function About(): React.ReactNode {
           </p>
         </section>
 
-        <section className="about-section">
+        <section className="about-section contact-panel">
           <h2>联系</h2>
           <ul>
             <li>Email：shell05117@163.com</li>

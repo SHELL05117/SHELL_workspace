@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
+import {ArrowDown, BookOpen, Newspaper} from 'lucide-react';
+import {Button} from '../components/ui/button';
 import styles from './index.module.css';
 
 type Card = {
@@ -83,27 +85,46 @@ export default function Home(): React.ReactNode {
   useScrollReveal();
   const posterUrl = useBaseUrl('/img/source-assets/海报.png');
 
+  const scrollToArchive = () => {
+    document.getElementById('stage-archive-start')?.scrollIntoView({behavior: 'smooth', block: 'start'});
+  };
+
   return (
     <Layout title="Home" description="SHELL Workspace 个人工程档案系统">
       <main className={styles.page}>
         <section className={styles.hero}>
           <div className={styles.stageWash} aria-hidden="true" />
-          <div className={styles.spotlight} aria-hidden="true" />
+          <div className={styles.spotlightRig} aria-hidden="true" />
+          <div className={styles.spotlightBeam} aria-hidden="true" />
+          <div className={styles.spotlightLanding} aria-hidden="true" />
 
           <div className={styles.heroContent}>
             <p className={styles.kicker}>暗色舞台档案系统</p>
-            <h1>SHELL Workspace</h1>
+            <h1 className={styles.stageTitle} aria-label="SHELL WORKSPACE">
+              <span className={styles.titleShell}>SHELL</span>
+              <span className={styles.titleWorkspace}>WORKSPACE</span>
+            </h1>
             <p className={styles.subtitle}>
               这里整理 SHELL 的机器人项目、软件工程、课程学习、音乐作品和技术文章。
               网站优先保持结构清晰、内容可维护、路径可长期使用。
             </p>
             <div className={styles.heroActions}>
-              <Link className={clsx(styles.button, styles.primaryButton)} to="/projects">
-                查看 Projects
-              </Link>
-              <Link className={clsx(styles.button, styles.secondaryButton)} to="/music">
-                查看 Music
-              </Link>
+              <Button className={clsx(styles.button, styles.primaryButton)} onClick={scrollToArchive}>
+                SHELL
+                <ArrowDown aria-hidden="true" size={16} />
+              </Button>
+              <Button asChild className={clsx(styles.button, styles.secondaryButton)} variant="outline">
+                <Link to="/blog">
+                  Blog
+                  <Newspaper aria-hidden="true" size={16} />
+                </Link>
+              </Button>
+              <Button asChild className={clsx(styles.button, styles.secondaryButton)} variant="outline">
+                <Link to="/notes/robotics/intro">
+                  Note
+                  <BookOpen aria-hidden="true" size={16} />
+                </Link>
+              </Button>
             </div>
           </div>
 
@@ -117,7 +138,7 @@ export default function Home(): React.ReactNode {
           </aside>
         </section>
 
-        <section className={styles.focusSection} data-reveal aria-label="当前方向">
+        <section id="stage-archive-start" className={styles.focusSection} data-reveal aria-label="当前方向">
           <div className={styles.sectionHeader}>
             <p>当前方向</p>
             <h2>把公开项目、技术文章、课程笔记和创作记录整理成长期档案。</h2>

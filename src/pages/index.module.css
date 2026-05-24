@@ -45,20 +45,57 @@
     linear-gradient(90deg, rgba(0, 0, 0, 0.9), transparent 38%, rgba(0, 0, 0, 0.82));
 }
 
-.spotlight {
+.spotlightRig {
   position: absolute;
-  top: -20%;
-  left: 8%;
-  width: 72%;
-  height: 128%;
-  z-index: -1;
+  top: 6%;
+  right: 21%;
+  width: 8px;
+  height: 8px;
+  z-index: 3;
+  border-radius: 50%;
+  background: #f6ffff;
+  box-shadow:
+    0 0 10px rgba(230, 255, 255, 0.42),
+    0 0 34px rgba(157, 239, 255, 0.16);
+  opacity: 0;
+  animation: rigGlow 980ms ease forwards;
+}
+
+.spotlightBeam {
+  position: absolute;
+  top: -13%;
+  right: 6%;
+  width: 640px;
+  height: 980px;
+  z-index: 2;
   pointer-events: none;
   background:
-    conic-gradient(from 222deg at 50% 0%, transparent 0deg, rgba(222, 252, 255, 0.02) 9deg, rgba(226, 252, 255, 0.22) 18deg, rgba(226, 252, 255, 0.04) 30deg, transparent 42deg),
-    radial-gradient(ellipse at 68% 58%, rgba(220, 250, 255, 0.22), transparent 18rem);
-  filter: blur(1px);
+    radial-gradient(ellipse at 50% 52%, rgba(226, 252, 255, 0.09), rgba(226, 252, 255, 0.035) 30%, transparent 68%),
+    conic-gradient(from 198deg at 54% 0%, transparent 0deg, rgba(214, 250, 255, 0.012) 13deg, rgba(226, 252, 255, 0.115) 21deg, rgba(226, 252, 255, 0.018) 33deg, transparent 50deg);
+  clip-path: polygon(51% 0, 76% 100%, 28% 100%);
+  filter: blur(14px);
+  opacity: 0;
   transform-origin: 52% 0%;
-  animation: spotlightSweep 1100ms cubic-bezier(0.22, 0.78, 0.28, 1) forwards;
+  animation: spotlightSweep 1180ms cubic-bezier(0.19, 0.88, 0.24, 1) forwards;
+  mix-blend-mode: screen;
+}
+
+.spotlightLanding {
+  position: absolute;
+  right: 14.2%;
+  top: 25%;
+  width: 290px;
+  height: 210px;
+  z-index: 4;
+  pointer-events: none;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.16), rgba(190, 244, 255, 0.07) 38%, transparent 72%);
+  filter: blur(18px);
+  opacity: 0;
+  transform: rotate(-8deg) scale(0.72);
+  animation: landingSettle 980ms ease forwards;
+  animation-delay: 260ms;
   mix-blend-mode: screen;
 }
 
@@ -79,13 +116,36 @@
   text-transform: uppercase;
 }
 
-.hero h1 {
+.stageTitle {
   margin: 0;
   color: #f9fbf7;
-  font-size: clamp(44px, 7vw, 78px);
-  line-height: 0.98;
+  line-height: 0.86;
   letter-spacing: 0;
   text-shadow: 0 18px 48px rgba(0, 0, 0, 0.72);
+}
+
+.titleShell,
+.titleWorkspace {
+  display: block;
+}
+
+.titleShell {
+  font-size: clamp(70px, 12vw, 148px);
+  font-weight: 950;
+  letter-spacing: 0;
+  color: #ffffff;
+  -webkit-text-stroke: 1px rgba(210, 252, 255, 0.22);
+  text-shadow:
+    0 0 18px rgba(205, 251, 255, 0.18),
+    0 22px 58px rgba(0, 0, 0, 0.82);
+}
+
+.titleWorkspace {
+  margin-top: 12px;
+  color: rgba(236, 246, 245, 0.72);
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 
 .subtitle {
@@ -113,6 +173,7 @@
   align-items: center;
   justify-content: center;
   min-height: 46px;
+  gap: 9px;
   padding: 0 20px;
   overflow: hidden;
   border-radius: 8px;
@@ -179,8 +240,10 @@
   border-radius: 8px;
   background: #030405;
   box-shadow:
+    0 0 70px rgba(154, 232, 244, 0.1),
     0 36px 90px rgba(0, 0, 0, 0.66),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+    inset 0 0 90px rgba(0, 0, 0, 0.88);
   transform: perspective(1100px) rotateY(-5deg) rotateX(1deg);
 }
 
@@ -195,8 +258,9 @@
 .posterFrame::before {
   z-index: 2;
   background:
-    linear-gradient(105deg, rgba(255, 255, 255, 0.18), transparent 18%, transparent 72%, rgba(160, 233, 245, 0.09)),
-    radial-gradient(ellipse at 52% 18%, rgba(255, 255, 255, 0.2), transparent 20rem);
+    radial-gradient(ellipse at 52% 28%, rgba(255, 255, 255, 0.11), rgba(178, 240, 252, 0.045) 27%, transparent 48%),
+    linear-gradient(105deg, rgba(255, 255, 255, 0.055), transparent 18%, transparent 72%, rgba(160, 233, 245, 0.055)),
+    radial-gradient(ellipse at 50% 42%, transparent 45%, rgba(0, 0, 0, 0.72) 87%);
   opacity: 0;
   animation: posterLightSettle 1200ms ease forwards;
   animation-delay: 260ms;
@@ -205,8 +269,10 @@
 .posterFrame::after {
   z-index: 3;
   background:
-    linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.78) 100%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent 40%, rgba(0, 0, 0, 0.3));
+    radial-gradient(ellipse at 50% 18%, transparent 22%, rgba(0, 0, 0, 0.14) 54%, rgba(0, 0, 0, 0.82) 100%),
+    radial-gradient(ellipse at 50% 88%, rgba(215, 250, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, transparent 38%, rgba(0, 0, 0, 0.82) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.76), transparent 34%, transparent 62%, rgba(0, 0, 0, 0.72));
 }
 
 .posterFrame img {
@@ -215,16 +281,18 @@
   min-height: 620px;
   object-fit: cover;
   object-position: 50% center;
-  opacity: 0.88;
-  filter: saturate(0.82) contrast(1.08);
+  opacity: 0.98;
+  filter: saturate(0.94) contrast(1.08);
 }
 
 .posterGlow {
   position: absolute;
-  inset: 12% 8% auto;
-  height: 44%;
+  inset: 10% 15% auto;
+  height: 48%;
   z-index: 1;
-  background: radial-gradient(ellipse, rgba(226, 252, 255, 0.32), transparent 62%);
+  background:
+    radial-gradient(ellipse at 48% 30%, rgba(255, 255, 255, 0.12), transparent 26%),
+    radial-gradient(ellipse at 50% 44%, rgba(142, 232, 250, 0.12), transparent 66%);
   filter: blur(26px);
   opacity: 0;
   animation: posterLightSettle 760ms ease forwards;
@@ -380,14 +448,39 @@
 @keyframes spotlightSweep {
   0% {
     opacity: 0;
-    transform: rotate(-24deg) translateX(-16%);
+    transform: rotate(-30deg) translateX(-58%) scaleX(0.82);
   }
   24% {
-    opacity: 0.72;
+    opacity: 0.32;
+  }
+  62% {
+    opacity: 0.28;
+    transform: rotate(-4deg) translateX(-13%) scaleX(0.98);
   }
   100% {
-    opacity: 1;
-    transform: rotate(10deg) translateX(16%);
+    opacity: 0.16;
+    transform: rotate(12deg) translateX(8%) scaleX(1);
+  }
+}
+
+@keyframes landingSettle {
+  0% {
+    opacity: 0;
+    transform: translate(-270px, 84px) rotate(-22deg) scale(0.48);
+  }
+  58% {
+    opacity: 0.12;
+    transform: translate(-58px, 28px) rotate(-12deg) scale(0.78);
+  }
+  100% {
+    opacity: 0.18;
+    transform: translate(0, 0) rotate(-8deg) scale(1);
+  }
+}
+
+@keyframes rigGlow {
+  to {
+    opacity: 0.28;
   }
 }
 
@@ -442,10 +535,24 @@
     width: min(100% - 28px, 1160px);
   }
 
-  .spotlight {
-    left: -4%;
-    width: 86%;
-    opacity: 0.7;
+  .spotlightRig {
+    right: 32%;
+    opacity: 0.55;
+  }
+
+  .spotlightBeam {
+    right: -46%;
+    width: 520px;
+    height: 820px;
+    opacity: 0.52;
+  }
+
+  .spotlightLanding {
+    right: 18%;
+    top: 47%;
+    width: 190px;
+    height: 150px;
+    opacity: 0.42;
   }
 
   .posterFrame,
@@ -464,7 +571,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spotlight,
+  .spotlightRig,
+  .spotlightBeam,
+  .spotlightLanding,
   .heroContent,
   .heroActions,
   .posterFrame::before,

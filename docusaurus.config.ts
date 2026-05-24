@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'SHELL Workspace',
   tagline: 'Robotics, Software, Course, and Music',
-  favicon: 'img/favicon.svg',
+  favicon: 'img/brand/shell-logo-mark.png',
   url: 'https://SHELL05117.github.io',
   baseUrl: '/SHELL_workspace/',
   organizationName: 'SHELL05117',
@@ -50,7 +50,7 @@ const config: Config = {
       title: 'SHELL Workspace',
       logo: {
         alt: 'SHELL Workspace Logo',
-        src: 'img/favicon.svg',
+        src: 'img/brand/shell-logo-mark.png',
       },
       items: [
         {to: '/', label: 'Home', position: 'left'},
@@ -63,7 +63,6 @@ const config: Config = {
           label: 'Notes',
         },
         {to: '/about', label: 'About', position: 'left'},
-        {to: '/archive', label: 'Archive', position: 'left'},
         {
           href: 'https://github.com/SHELL05117/SHELL_workspace',
           label: 'GitHub',

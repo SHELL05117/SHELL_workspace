@@ -2,22 +2,88 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import {AtSign, BadgeCheck, CalendarDays} from 'lucide-react';
+import {Card, CardContent, CardHeader, CardTitle} from '../components/ui/card';
+import {Tabs, TabsContent, TabsList, TabsTrigger} from '../components/ui/tabs';
 
 const honors = [
-  '2022 年 VEX 中国青岛第十五届亚锦赛二等奖',
-  '2022 年高新区中小学第八届科创比赛二等奖',
-  '2023 年“科创青禾”全国 VEX 机器人精英赛高中组一等奖',
-  '2023 年 VRC 上海交通大学全国精英赛殿军',
-  '2023 年 VRC 中国—加拿大国际赛西南赛区冠军',
-  '2023 年 VRC 中国—加拿大国际赛西南赛区一等奖',
-  '2023 年首届“中国蓝 AI 未来之星—博思杯”VRC 技能赛殿军',
-  '2023 年首届“中国蓝 AI 未来之星—博思杯”VRC 最佳惊奇奖',
-  '2023 年高新区英才计划首聘人员计算机类',
-  '2023 年成都市高新区科创十佳学生',
+  {
+    id: 'vex-qingdao-2022',
+    year: '2022',
+    title: 'VEX 中国青岛第十五届亚锦赛',
+    result: '二等奖',
+    imageUrl: '',
+  },
+  {
+    id: 'gaoxin-maker-2022',
+    year: '2022',
+    title: '高新区中小学第八届科创比赛',
+    result: '二等奖',
+    imageUrl: '',
+  },
+  {
+    id: 'qinghe-2023',
+    year: '2023',
+    title: '“科创青禾”全国 VEX 机器人精英赛高中组',
+    result: '一等奖',
+    imageUrl: '',
+  },
+  {
+    id: 'sjtu-vrc-2023',
+    year: '2023',
+    title: 'VRC 上海交通大学全国精英赛',
+    result: '殿军',
+    imageUrl: '',
+  },
+  {
+    id: 'canada-southwest-champion-2023',
+    year: '2023',
+    title: 'VRC 中国—加拿大国际赛西南赛区',
+    result: '冠军',
+    imageUrl: '',
+  },
+  {
+    id: 'canada-southwest-first-2023',
+    year: '2023',
+    title: 'VRC 中国—加拿大国际赛西南赛区',
+    result: '一等奖',
+    imageUrl: '',
+  },
+  {
+    id: 'blue-ai-skills-2023',
+    year: '2023',
+    title: '首届“中国蓝 AI 未来之星—博思杯”VRC 技能赛',
+    result: '殿军',
+    imageUrl: '',
+  },
+  {
+    id: 'blue-ai-amaze-2023',
+    year: '2023',
+    title: '首届“中国蓝 AI 未来之星—博思杯”VRC',
+    result: '最佳惊奇奖',
+    imageUrl: '',
+  },
+  {
+    id: 'talent-program-2023',
+    year: '2023',
+    title: '高新区英才计划首聘人员',
+    result: '计算机类',
+    imageUrl: '',
+  },
+  {
+    id: 'top-maker-student-2023',
+    year: '2023',
+    title: '成都市高新区科创十佳学生',
+    result: '入选',
+    imageUrl: '',
+  },
 ];
 
 export default function About(): React.ReactNode {
   const photoUrl = useBaseUrl('/img/source-assets/phot.png');
+  const emailLogo = useBaseUrl('/img/social/email.svg');
+  const instagramLogo = useBaseUrl('/img/social/instagram.svg');
+  const discordLogo = useBaseUrl('/img/social/discord.svg');
 
   return (
     <Layout title="About" description="SHELL Workspace 公开身份档案">
@@ -87,13 +153,48 @@ export default function About(): React.ReactNode {
           </ul>
         </section>
 
-        <section className="about-section">
-          <h2>竞赛与荣誉</h2>
-          <ol className="timeline-list">
-            {honors.map((honor) => (
-              <li key={honor}>{honor}</li>
-            ))}
-          </ol>
+        <section className="about-section honor-archive">
+          <div className="section-heading-row">
+            <div>
+              <p className="stage-kicker">Honor Archive</p>
+              <h2>竞赛与荣誉</h2>
+            </div>
+            <span>图片链接待补充</span>
+          </div>
+          <Tabs defaultValue={honors[0].id} className="honor-tabs">
+            <TabsList aria-label="荣誉档案概览">
+              {honors.map((honor) => (
+                <TabsTrigger key={honor.id} value={honor.id}>
+                  <span>{honor.year}</span>
+                  {honor.result}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            <div className="honor-content-stack">
+              {honors.map((honor) => (
+                <TabsContent key={honor.id} value={honor.id}>
+                  <Card className="honor-card">
+                    <CardHeader>
+                      <span className="honor-year">
+                        <CalendarDays aria-hidden="true" size={16} />
+                        {honor.year}
+                      </span>
+                      <CardTitle>{honor.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="honor-media">
+                        {honor.imageUrl ? <img src={honor.imageUrl} alt={`${honor.title} ${honor.result}`} /> : <span>荣誉图片预留位</span>}
+                      </div>
+                      <div className="honor-meta">
+                        <BadgeCheck aria-hidden="true" size={18} />
+                        <strong>{honor.result}</strong>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              ))}
+            </div>
+          </Tabs>
         </section>
 
         <section className="about-section archive-panel">
@@ -115,12 +216,32 @@ export default function About(): React.ReactNode {
         </section>
 
         <section className="about-section contact-panel">
-          <h2>联系</h2>
-          <ul>
-            <li>Email：shell05117@163.com</li>
-            <li>Instagram：shell05117</li>
-            <li>Discord：shell05117</li>
-          </ul>
+          <div>
+            <p className="stage-kicker">Signal Panel</p>
+            <h2>联系</h2>
+          </div>
+          <div className="contact-grid">
+            <a className="contact-token" href="mailto:shell05117@163.com">
+              <span className="contact-icon"><img src={emailLogo} alt="" /></span>
+              <span>Email</span>
+              <strong>shell05117@163.com</strong>
+            </a>
+            <a className="contact-token" href="https://www.instagram.com/shell05117">
+              <span className="contact-icon"><img src={instagramLogo} alt="" /></span>
+              <span>Instagram</span>
+              <strong>shell05117</strong>
+            </a>
+            <div className="contact-token">
+              <span className="contact-icon"><img src={discordLogo} alt="" /></span>
+              <span>Discord</span>
+              <strong>shell05117</strong>
+            </div>
+            <div className="contact-token contact-token--quiet">
+              <span className="contact-icon"><AtSign aria-hidden="true" size={20} /></span>
+              <span>Archive ID</span>
+              <strong>SHELL Workspace</strong>
+            </div>
+          </div>
         </section>
       </main>
     </Layout>

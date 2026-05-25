@@ -42,13 +42,32 @@ function getPost(item: Props['items'][number]): BlogCardPost {
 function BlogListPageContent(props: Props): ReactNode {
   const {metadata, items, sidebar} = props;
   const posts = items.map(getPost).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const tagCount = new Set(posts.flatMap((post) => post.tags)).size;
 
   return (
     <BlogLayout sidebar={sidebar}>
       <header className="blog-index-header">
-        <p className="stage-kicker">Blog Archive</p>
-        <h1>Blog</h1>
-        <p>技术文章、项目复盘、开发日志和长期维护记录。</p>
+        <div>
+          <p className="stage-kicker">Engineering Journal</p>
+          <h1>Blog</h1>
+          <p>
+            技术文章、项目复盘、开发日志和长期维护记录。这里保存 SHELL Workspace 的工程判断、实验记录和可追溯的项目上下文。
+          </p>
+        </div>
+        <dl className="blog-index-stats" aria-label="Blog 统计">
+          <div>
+            <dt>{posts.length}</dt>
+            <dd>篇文章</dd>
+          </div>
+          <div>
+            <dt>{tagCount}</dt>
+            <dd>个主题</dd>
+          </div>
+          <div>
+            <dt>持续</dt>
+            <dd>归档</dd>
+          </div>
+        </dl>
       </header>
       <BlogExplorer posts={posts} />
       <BlogListPaginator metadata={metadata} />

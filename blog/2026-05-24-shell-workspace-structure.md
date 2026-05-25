@@ -1,28 +1,26 @@
 ---
 slug: shell-workspace-structure
+date: 2026-05-22
 title: SHELL Workspace 架构重整记录
 tags: [Docusaurus, Workspace, Archive]
 ---
 
-SHELL Workspace 正在从一个混乱工作台整理成长期维护的个人工程档案系统。
+# SHELL Workspace 建立了
+
+作者：SHELL
+发布时间：2026年5月22日
 
 <!-- truncate -->
 
-## 重整目标
+## 感谢您的支持
 
-新的一级栏目是 Home、Projects、Blog、Notes、About、Archive 和 GitHub。每个栏目都有明确职责：
+本站于2026年5月22日正式开始编辑，主要使用ChatGPT codex 5.5进行辅助，主要用于个人静态博客、笔记和资料的收纳，若发布内容有侵权，请联系About中的联系方式
 
-- Home 作为精选入口。
-- Projects 展示公开作品集。
-- Blog 保存技术文章、项目复盘和开发日志。
-- Notes 维护长期知识库。
-- About 写公开身份档案。
-- Archive 保存旧项目、迁移记录和待确认材料。
 
-## 当前原则
-
-本轮重整不优先做 UI 美化，而是优先保证导航、路由、侧边栏、索引页和构建稳定。Robotics / Pushback 相关内容继续保留，大媒体文件等待迁移到 OSS/CDN。
-
-## 后续
-
-真实项目细节、文章主题、公开身份信息和媒体资产路径会继续记录到用户待补充清单中。
+## 特别鸣谢：
+Kl_zc:技术栈协助
+织鸢:网页内容构建
+何子超：筹备支持
+陆亦航：筹备支持
+阿里云：技术支持
+OpenAI：技术支持

@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {useLocation} from '@docusaurus/router';
+import NotesMobileDirectory from '../components/NotesMobileDirectory';
 
 export default function Root({children}: {children: React.ReactNode}): React.ReactNode {
   const location = useLocation();
@@ -25,5 +26,10 @@ export default function Root({children}: {children: React.ReactNode}): React.Rea
     return undefined;
   }, [location.pathname]);
 
-  return children;
+  return (
+    <>
+      <NotesMobileDirectory />
+      {children}
+    </>
+  );
 }

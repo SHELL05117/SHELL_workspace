@@ -46,6 +46,11 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/source-assets/LOGO.png',
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: 'SHELL Workspace',
       logo: {
@@ -56,12 +61,7 @@ const config: Config = {
         {to: '/', label: 'Home', position: 'left'},
         {to: '/projects', label: 'Projects', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
-          position: 'left',
-          label: 'Notes',
-        },
+        {to: '/notes', label: 'Notes', position: 'left'},
         {to: '/about', label: 'About', position: 'left'},
         {
           href: 'https://github.com/SHELL05117/SHELL_workspace',
@@ -76,7 +76,7 @@ const config: Config = {
         {
           title: 'Workspace',
           items: [
-            {label: 'Notes', to: '/notes/robotics/intro'},
+            {label: 'Notes', to: '/notes'},
             {label: 'Projects', to: '/projects'},
             {label: 'Blog', to: '/blog'},
             {label: 'About', to: '/about'},

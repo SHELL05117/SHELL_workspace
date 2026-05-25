@@ -14,45 +14,51 @@ type Card = {
   to: string;
 };
 
-const focusAreas: Card[] = [
+const aboutLinks: Card[] = [
   {
-    title: 'Robotics',
-    label: 'VEX / VEX-U / Control',
-    description: '机器人竞赛、自动程序、传感器校准、路径规划和控制系统。',
-    to: '/notes/robotics/intro',
+    title: '公开身份',
+    label: 'Public Profile',
+    description: '了解 SHELL 的公开身份、当前方向与长期整理这个 Workspace 的原因。',
+    to: '/about?section=public-profile',
   },
   {
-    title: 'Projects',
-    label: '机器人项目 / 音乐作品',
-    description: '按照项目类型整理公开作品，避免把不同内容混在同一个列表里。',
-    to: '/projects',
+    title: '教育与队伍',
+    label: 'Education / Team',
+    description: '查看学习阶段、队伍经历和机器人方向的成长路径。',
+    to: '/about?section=education',
   },
   {
-    title: 'Course',
-    label: '课程学习',
-    description: '整理 Math & Physics、Engineering Drawing 等学科内容。',
-    to: '/notes/math-physics/intro',
+    title: '实习与工程',
+    label: 'Engineering Field',
+    description: '记录实习现场、工程协作和真实项目中的技术实践。',
+    to: '/about?section=engineering',
+  },
+  {
+    title: '联系交流',
+    label: 'Signal Panel',
+    description: '通过 Email、GitHub、Instagram 或 Discord 与 SHELL 建立联系。',
+    to: '/about?section=contact',
   },
 ];
 
-const featured: Card[] = [
+const blogArticles: Card[] = [
   {
-    title: 'Pushback',
-    label: '机器人项目',
-    description: '2025-2026 V5RC 赛季项目，重点是自动程序、底盘控制和现场调试。',
-    to: '/notes/robotics/pushback',
+    title: 'SHELL Workspace 架构重整记录',
+    label: 'Workspace / Archive',
+    description: '记录个人工程档案系统从混乱工作台走向长期维护结构的过程。',
+    to: '/blog/shell-workspace-structure',
   },
   {
-    title: 'VEX U 第三方传感器技术栈',
-    label: '技术文章',
-    description: '关于 VEX U 第三方传感器、外部处理器、通信和算法路线的 Blog。',
+    title: 'VEX U 第三方传感器项目：技术栈与算法路线',
+    label: 'Robotics / VEX U',
+    description: '围绕传感器、外部处理器、通信和算法路线整理 VEX U 技术方案。',
     to: '/blog/vex-u-third-party-sensors',
   },
   {
-    title: '音乐与创作',
-    label: '音乐作品',
-    description: '展示 SHELL.果壳 的公开歌曲，以及 Hip-hop / Rap 与 AI 音乐工作流探索。',
-    to: '/music',
+    title: '从盐湖城看山景城：Google I/O 2026',
+    label: 'AI / Engineering Journal',
+    description: '从开发者视角观察 Google I/O 2026 中的 AI、移动设备与工程工具变化。',
+    to: '/blog/google_io_2026_article_package/google_io_2026_revised',
   },
 ];
 
@@ -99,14 +105,13 @@ export default function Home(): React.ReactNode {
           <div className={styles.spotlightLanding} aria-hidden="true" />
 
           <div className={styles.heroContent}>
-            <p className={styles.kicker}>暗色舞台档案系统</p>
+            <p className={styles.kicker}>独属于我的舞台</p>
             <h1 className={styles.stageTitle} aria-label="SHELL WORKSPACE">
               <span className={styles.titleShell}>SHELL</span>
               <span className={styles.titleWorkspace}>WORKSPACE</span>
             </h1>
             <p className={styles.subtitle}>
-              这里整理 SHELL 的机器人项目、软件工程、课程学习、音乐作品和技术文章。
-              网站优先保持结构清晰、内容可维护、路径可长期使用。
+              这里整理 SHELL 的机器人项目、软件工程、课程学习、音乐作品和技术文章。网站优先保持结构清晰、内容可维护、路径可长期使用。
             </p>
             <div className={styles.heroActions}>
               <Button className={clsx(styles.button, styles.primaryButton)} onClick={scrollToArchive}>
@@ -138,13 +143,13 @@ export default function Home(): React.ReactNode {
           </aside>
         </section>
 
-        <section id="stage-archive-start" className={styles.focusSection} data-reveal aria-label="当前方向">
+        <section id="stage-archive-start" className={styles.focusSection} data-reveal aria-label="关于SHELL">
           <div className={styles.sectionHeader}>
-            <p>当前方向</p>
-            <h2>把公开项目、技术文章、课程笔记和创作记录整理成长期档案。</h2>
+            <p>关于SHELL</p>
+            <h2>SHELL 是一个把机器人、软件工程、课程学习和音乐创作持续整理成公开档案的个人工程身份。</h2>
           </div>
           <div className={styles.focusGrid}>
-            {focusAreas.map((area) => (
+            {aboutLinks.map((area) => (
               <Link className={clsx(styles.focusCard, 'clean-link')} to={area.to} key={area.title}>
                 <small>{area.label}</small>
                 <strong>{area.title}</strong>
@@ -154,17 +159,17 @@ export default function Home(): React.ReactNode {
           </div>
         </section>
 
-        <section className={styles.projectSection} data-reveal aria-label="精选入口">
+        <section className={styles.projectSection} data-reveal aria-label="精选文章">
           <div className={styles.sectionHeader}>
-            <p>精选入口</p>
-            <h2>先展示已经有真实内容的项目、文章和音乐作品。</h2>
+            <p>精选文章</p>
+            <h2>Blog 用来保存技术文章、项目复盘、开发日志和长期维护记录。</h2>
           </div>
           <div className={styles.projectGrid}>
-            {featured.map((project) => (
-              <Link className={clsx(styles.projectCard, 'clean-link')} to={project.to} key={project.title}>
-                <span>{project.label}</span>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+            {blogArticles.map((article) => (
+              <Link className={clsx(styles.projectCard, 'clean-link')} to={article.to} key={article.title}>
+                <span>{article.label}</span>
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
               </Link>
             ))}
           </div>

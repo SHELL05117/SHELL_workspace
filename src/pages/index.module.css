@@ -361,7 +361,7 @@
 .focusGrid,
 .projectGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
 }
 
@@ -507,10 +507,12 @@
 }
 
 @media (max-width: 960px) {
-  .hero,
   .hero {
+    grid-template-columns: 1fr;
+    gap: 34px;
     min-height: auto;
-    padding-top: 64px;
+    padding: 56px 0 48px;
+    align-items: start;
   }
 
   .posterFrame,
@@ -532,7 +534,62 @@
   .hero,
   .focusSection,
   .projectSection {
-    width: min(100% - 28px, 1160px);
+    width: min(100% - 32px, 1160px);
+  }
+
+  .hero {
+    padding: 24px 0 30px;
+    gap: 20px;
+  }
+
+  .stageWash {
+    inset: 0 -18px;
+  }
+
+  .hero::before {
+    inset: auto -18px 0;
+    height: 28%;
+  }
+
+  .heroContent {
+    max-width: none;
+  }
+
+  .kicker {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .stageTitle {
+    line-height: 0.98;
+  }
+
+  .titleShell {
+    font-size: clamp(48px, 17vw, 68px);
+  }
+
+  .titleWorkspace {
+    margin-top: 8px;
+    font-size: clamp(21px, 7vw, 30px);
+    letter-spacing: 0.04em;
+  }
+
+  .subtitle {
+    max-width: none;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .heroActions {
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .button {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 16px;
   }
 
   .spotlightRig {
@@ -557,11 +614,27 @@
 
   .posterFrame,
   .posterFrame img {
-    min-height: 420px;
+    min-height: 230px;
   }
 
-  .subtitle {
-    font-size: 17px;
+  .posterFrame {
+    order: 2;
+    max-height: 300px;
+  }
+
+  .identityText {
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+  }
+
+  .identityText span {
+    font-size: 22px;
+  }
+
+  .identityText p {
+    font-size: 14px;
+    line-height: 1.55;
   }
 
   .focusSection,

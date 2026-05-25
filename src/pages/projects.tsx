@@ -59,8 +59,7 @@ export default function Projects(): React.ReactNode {
           <p className="stage-kicker">Project Cards</p>
           <h1>Projects</h1>
           <p>
-            Projects 暂时分为两个大类：机器人项目与音乐作品。每个子项只展示已经有真实内容的公开入口，
-            暂未提供信息的预留栏目不展示。
+            Projects SHELL的机器人项目、音乐作品、其他开发项目。
           </p>
         </header>
 

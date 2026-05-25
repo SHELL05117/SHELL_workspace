@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import {Search} from 'lucide-react';
+import {ArrowUpRight, Search} from 'lucide-react';
 
 export type BlogCardPost = {
   title: string;
@@ -14,23 +14,33 @@ export type BlogCardPost = {
   tags: string[];
 };
 
+const ALL_TAGS = '全部';
+
 function authorLine(post: BlogCardPost) {
   return post.authors.length > 0 ? post.authors.join(' / ') : 'SHELL';
 }
 
 function readingLength(post: BlogCardPost) {
   if (!post.readingTime) {
-    return '阅读长度待估算';
+    return '阅读时长待估';
   }
   return `约 ${Math.max(1, Math.round(post.readingTime))} 分钟`;
+}
+
+function postDate(post: BlogCardPost) {
+  return new Intl.DateTimeFormat('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date(post.date));
 }
 
 export default function BlogExplorer({posts}: {posts: BlogCardPost[]}) {
   const pagefindUrl = useBaseUrl('/pagefind/pagefind.js');
   const [query, setQuery] = useState('');
-  const [activeTag, setActiveTag] = useState('全部');
+  const [activeTag, setActiveTag] = useState(ALL_TAGS);
   const [pagefindMatches, setPagefindMatches] = useState<string[] | null>(null);
-  const allTags = useMemo(() => ['全部', ...Array.from(new Set(posts.flatMap((post) => post.tags))).sort()], [posts]);
+  const allTags = useMemo(() => [ALL_TAGS, ...Array.from(new Set(posts.flatMap((post) => post.tags))).sort()], [posts]);
 
   async function runSearch(nextQuery: string) {
     setQuery(nextQuery);
@@ -60,7 +70,7 @@ export default function BlogExplorer({posts}: {posts: BlogCardPost[]}) {
   const filteredPosts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return posts.filter((post) => {
-      const tagMatch = activeTag === '全部' || post.tags.includes(activeTag);
+      const tagMatch = activeTag === ALL_TAGS || post.tags.includes(activeTag);
       const fallbackSearchMatch =
         !normalizedQuery ||
         [post.title, post.description, ...post.tags, authorLine(post)]
@@ -78,7 +88,7 @@ export default function BlogExplorer({posts}: {posts: BlogCardPost[]}) {
     <section className="blog-explorer" aria-label="博客文章浏览">
       <div className="blog-explorer__tools">
         <label className="blog-search">
-          <Search aria-hidden="true" size={18} />
+          <Search aria-hidden="true" size={17} />
           <input
             value={query}
             onChange={(event) => void runSearch(event.target.value)}
@@ -99,25 +109,33 @@ export default function BlogExplorer({posts}: {posts: BlogCardPost[]}) {
         </div>
       </div>
 
+      <div className="blog-result-meta">
+        <span>{filteredPosts.length} 篇文章</span>
+        <span>{activeTag === ALL_TAGS ? '全部主题' : activeTag}</span>
+      </div>
+
       <div className="blog-card-list">
         {filteredPosts.map((post) => (
           <article className="blog-browser-card" key={post.permalink}>
-            <div>
-              <p className="blog-browser-card__meta">
-                {post.formattedDate} · {authorLine(post)} · {readingLength(post)}
-              </p>
-              <h2>
-                <Link to={post.permalink}>{post.title}</Link>
-              </h2>
-              <p className="blog-browser-card__subtitle">{post.description}</p>
-              <div className="blog-browser-card__tags">
-                {post.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
+            <Link className="blog-browser-card__link clean-link" to={post.permalink}>
+              <div className="blog-browser-card__date">
+                <span>{postDate(post)}</span>
+                <small>{readingLength(post)}</small>
               </div>
-            </div>
-            <Link className="blog-browser-card__read" to={post.permalink}>
-              阅读
+              <div className="blog-browser-card__body">
+                <p className="blog-browser-card__meta">{authorLine(post)}</p>
+                <h2>{post.title}</h2>
+                <p className="blog-browser-card__subtitle">{post.description}</p>
+                <div className="blog-browser-card__tags">
+                  {post.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <span className="blog-browser-card__read">
+                阅读
+                <ArrowUpRight aria-hidden="true" size={16} />
+              </span>
             </Link>
           </article>
         ))}

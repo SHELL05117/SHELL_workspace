@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -80,8 +80,17 @@ const honors = [
   },
 ];
 
+const HONOR_AUTOPLAY_INTERVAL_MS = 2000;
+const HONOR_RESUME_DELAY_MS = 9000;
+
 export default function About(): React.ReactNode {
   const location = useLocation();
+  const [activeHonorId, setActiveHonorId] = useState(honors[0].id);
+  const honorDirectionRef = useRef(1);
+  const honorPausedUntilRef = useRef(0);
+  const honorTabsListRef = useRef<HTMLDivElement | null>(null);
+  const honorTabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const honorTouchStartXRef = useRef<number | null>(null);
   const photoUrl = useBaseUrl('/img/source-assets/phot.png');
   const graduationPhoto = useBaseUrl('/img/source-assets/毕业.jpg');
   const internshipPhoto = useBaseUrl('/img/source-assets/在成都骐闻科技有限公司实习.jpg');
@@ -101,6 +110,69 @@ export default function About(): React.ReactNode {
       document.getElementById(section)?.scrollIntoView({behavior: 'smooth', block: 'start'});
     });
   }, [location.search]);
+
+  useEffect(() => {
+    const list = honorTabsListRef.current;
+    const tab = honorTabRefs.current[activeHonorId];
+    if (!list || !tab) {
+      return;
+    }
+
+    const nextLeft = tab.offsetLeft - (list.clientWidth - tab.clientWidth) / 2;
+    list.scrollTo({
+      left: Math.max(0, nextLeft),
+      behavior: 'smooth',
+    });
+  }, [activeHonorId]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      if (window.matchMedia('(min-width: 861px)').matches || Date.now() < honorPausedUntilRef.current) {
+        return;
+      }
+
+      setActiveHonorId((currentId) => {
+        const currentIndex = Math.max(0, honors.findIndex((honor) => honor.id === currentId));
+        let nextIndex = currentIndex + honorDirectionRef.current;
+
+        if (nextIndex >= honors.length) {
+          honorDirectionRef.current = -1;
+          nextIndex = honors.length - 2;
+        }
+
+        if (nextIndex < 0) {
+          honorDirectionRef.current = 1;
+          nextIndex = 1;
+        }
+
+        return honors[Math.max(0, Math.min(honors.length - 1, nextIndex))].id;
+      });
+    }, HONOR_AUTOPLAY_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  function pauseHonorAutoplay() {
+    honorPausedUntilRef.current = Date.now() + HONOR_RESUME_DELAY_MS;
+  }
+
+  function selectHonor(nextId: string) {
+    pauseHonorAutoplay();
+    const currentIndex = honors.findIndex((honor) => honor.id === activeHonorId);
+    const nextIndex = honors.findIndex((honor) => honor.id === nextId);
+    if (currentIndex >= 0 && nextIndex >= 0 && currentIndex !== nextIndex) {
+      honorDirectionRef.current = nextIndex > currentIndex ? 1 : -1;
+    }
+    setActiveHonorId(nextId);
+  }
+
+  function moveHonor(step: 1 | -1) {
+    pauseHonorAutoplay();
+    const currentIndex = Math.max(0, honors.findIndex((honor) => honor.id === activeHonorId));
+    const nextIndex = Math.max(0, Math.min(honors.length - 1, currentIndex + step));
+    honorDirectionRef.current = step;
+    setActiveHonorId(honors[nextIndex].id);
+  }
 
   return (
     <Layout title="About" description="SHELL Workspace 公开身份档案">
@@ -183,16 +255,45 @@ export default function About(): React.ReactNode {
             </div>
             <span>图片链接待补充</span>
           </div>
-          <Tabs defaultValue={honors[0].id} className="honor-tabs">
-            <TabsList aria-label="荣誉档案概览">
+          <Tabs value={activeHonorId} onValueChange={selectHonor} className="honor-tabs">
+            <TabsList
+              ref={honorTabsListRef}
+              aria-label="荣誉档案概览"
+              onPointerDown={pauseHonorAutoplay}
+              onFocus={pauseHonorAutoplay}>
               {honors.map((honor) => (
-                <TabsTrigger key={honor.id} value={honor.id}>
+                <TabsTrigger
+                  key={honor.id}
+                  ref={(node) => {
+                    honorTabRefs.current[honor.id] = node;
+                  }}
+                  value={honor.id}>
                   <span>{honor.year}</span>
                   {honor.result}
                 </TabsTrigger>
               ))}
             </TabsList>
-            <div className="honor-content-stack">
+            <div
+              className="honor-content-stack"
+              onPointerDown={pauseHonorAutoplay}
+              onMouseEnter={pauseHonorAutoplay}
+              onTouchStart={(event) => {
+                pauseHonorAutoplay();
+                honorTouchStartXRef.current = event.touches[0]?.clientX ?? null;
+              }}
+              onTouchEnd={(event) => {
+                const startX = honorTouchStartXRef.current;
+                const endX = event.changedTouches[0]?.clientX;
+                honorTouchStartXRef.current = null;
+                if (startX === null || endX === undefined) {
+                  return;
+                }
+                const distance = endX - startX;
+                if (Math.abs(distance) < 44) {
+                  return;
+                }
+                moveHonor(distance < 0 ? 1 : -1);
+              }}>
               {honors.map((honor) => (
                 <TabsContent key={honor.id} value={honor.id}>
                   <Card className="honor-card">

@@ -25,7 +25,7 @@ export const notesGroups: NotesGroup[] = [
     description: '围绕 VEX、Pushback、路径跟踪和机器人控制系统积累长期工程笔记。',
     links: [
       {label: 'Robotics 总览', to: '/notes/robotics/intro', tag: 'Overview'},
-      {label: 'Pushback 简版', to: '/notes/robotics/pushback', tag: 'Project'},
+      {label: 'Pushback 简介', to: '/notes/robotics/pushback', tag: 'Project'},
       {label: 'Pushback 项目文档', to: '/notes/robotics/pushback_document', tag: 'Project'},
       {label: 'VEX-U', to: '/notes/robotics/vex-u', tag: 'Reference'},
       {label: 'Pure Pursuit', to: '/notes/robotics/pure-pursuit', tag: 'Guide'},

@@ -111,7 +111,7 @@ export default function Home(): React.ReactNode {
               <span className={styles.titleWorkspace}>WORKSPACE</span>
             </h1>
             <p className={styles.subtitle}>
-              这里整理 SHELL 的机器人项目、软件工程、课程学习、音乐作品和技术文章。网站优先保持结构清晰、内容可维护、路径可长期使用。
+              聚光灯照不到的地方，我先活成了自己的观众。如果世界迟迟不给我舞台，那我就自己搭一个。
             </p>
             <div className={styles.heroActions}>
               <Button className={clsx(styles.button, styles.primaryButton)} onClick={scrollToArchive}>
@@ -146,7 +146,7 @@ export default function Home(): React.ReactNode {
         <section id="stage-archive-start" className={styles.focusSection} data-reveal aria-label="关于SHELL">
           <div className={styles.sectionHeader}>
             <p>关于SHELL</p>
-            <h2>SHELL 是一个把机器人、软件工程、课程学习和音乐创作持续整理成公开档案的个人工程身份。</h2>
+            <h2>SHELL 一个试图用作品证明自己存在的人。</h2>
           </div>
           <div className={styles.focusGrid}>
             {aboutLinks.map((area) => (
@@ -162,7 +162,7 @@ export default function Home(): React.ReactNode {
         <section className={styles.projectSection} data-reveal aria-label="精选文章">
           <div className={styles.sectionHeader}>
             <p>精选文章</p>
-            <h2>Blog 用来保存技术文章、项目复盘、开发日志和长期维护记录。</h2>
+            <h2>这里记录了我的Blog 用来保存技术文章、项目复盘、开发日志和长期维护记录。</h2>
           </div>
           <div className={styles.projectGrid}>
             {blogArticles.map((article) => (

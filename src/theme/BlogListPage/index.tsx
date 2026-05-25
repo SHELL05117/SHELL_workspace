@@ -39,6 +39,17 @@ function getPost(item: Props['items'][number]): BlogCardPost {
   };
 }
 
+function formatLatestDate(posts: BlogCardPost[]): string {
+  const latestDate = posts[0]?.date ? new Date(posts[0].date) : undefined;
+  if (!latestDate || Number.isNaN(latestDate.getTime())) {
+    return '暂无记录';
+  }
+  const year = latestDate.getFullYear();
+  const month = String(latestDate.getMonth() + 1).padStart(2, '0');
+  const day = String(latestDate.getDate()).padStart(2, '0');
+  return `${year}年${month}月${day}日`;
+}
+
 function BlogListPageContent(props: Props): ReactNode {
   const {metadata, items, sidebar} = props;
   const posts = items.map(getPost).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -63,9 +74,9 @@ function BlogListPageContent(props: Props): ReactNode {
             <dt>{tagCount}</dt>
             <dd>个主题</dd>
           </div>
-          <div>
-            <dt>持续</dt>
-            <dd>归档</dd>
+          <div className="blog-index-stats__updated">
+            <dt>最近更新时间</dt>
+            <dd>{formatLatestDate(posts)}</dd>
           </div>
         </dl>
       </header>

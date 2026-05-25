@@ -58,11 +58,11 @@ const config: Config = {
         src: 'img/brand/shell-logo-mark.png',
       },
       items: [
-        {to: '/', label: 'Home', position: 'left'},
-        {to: '/projects', label: 'Projects', position: 'left'},
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {to: '/notes', label: 'Notes', position: 'left'},
-        {to: '/about', label: 'About', position: 'left'},
+        {to: '/', label: 'Home', position: 'left', activeBaseRegex: '^/$'},
+        {to: '/projects', label: 'Projects', position: 'left', activeBaseRegex: '^/projects(?:/|$)'},
+        {to: '/blog', label: 'Blog', position: 'left', activeBaseRegex: '^/blog(?:/|$)'},
+        {to: '/notes', label: 'Notes', position: 'left', activeBaseRegex: '^/notes(?:/|$)'},
+        {to: '/about', label: 'About', position: 'left', activeBaseRegex: '^/about(?:/|$)'},
         {
           href: 'https://github.com/SHELL05117/SHELL_workspace',
           label: 'GitHub',

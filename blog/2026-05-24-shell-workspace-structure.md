@@ -19,8 +19,15 @@ tags: [Docusaurus, Workspace, Archive]
 
 ## 特别鸣谢：
 Kl_zc:技术栈协助
+
 织鸢:网页内容构建
-何子超：筹备支持
+
+Vision：精神鼓舞
+
+Alex：筹备支持
+
 陆亦航：筹备支持
+
 阿里云：技术支持
+
 OpenAI：技术支持

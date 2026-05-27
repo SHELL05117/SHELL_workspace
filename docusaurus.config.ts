@@ -1,5 +1,7 @@
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
 
 const config: Config = {
   title: 'SHELL Workspace',
@@ -30,18 +32,29 @@ const config: Config = {
           routeBasePath: 'notes',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/SHELL05117/SHELL_workspace/tree/main/',
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
         },
         blog: {
           routeBasePath: 'blog',
           showReadingTime: true,
           blogSidebarTitle: '全部文章',
           blogSidebarCount: 'ALL',
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
         },
         theme: {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
     ],
+  ],
+
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css',
+      type: 'text/css',
+    },
   ],
 
   themeConfig: {

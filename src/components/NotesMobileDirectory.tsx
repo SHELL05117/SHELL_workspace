@@ -45,13 +45,14 @@ export const notesGroups: NotesGroup[] = [
   {
     id: 'course',
     title: 'Course',
-    summary: '4 篇 / 课程、数学物理与工程制图',
-    description: '把课程学习中的公式、图纸规范、实验和机器人相关应用集中归档。',
+    summary: '5 篇 / Calculus、Physics 与 Engineering Graphics',
+    description: '将课程学习内容按 Calculus、Physics、Engineering Graphics 三个方向归档，便于从 Course 父级入口继续阅读。',
     links: [
-      {label: 'Course 总览', to: '/notes/math-physics/intro', tag: 'Overview'},
-      {label: 'Calculus', to: '/notes/math-physics/calculus', tag: 'Course'},
-      {label: 'Engineering Physics', to: '/notes/math-physics/engineering-physics', tag: 'Course'},
-      {label: 'Engineering Drawing', to: '/notes/math-physics/engineering-drawing', tag: 'Course'},
+      {label: 'Course 总览', to: '/notes/course/intro', tag: 'Overview'},
+      {label: 'Calculus', to: '/notes/course/calculus/intro', tag: 'Course'},
+      {label: '拉格朗日乘数法学习笔记', to: '/notes/course/calculus/拉格朗日乘数法学习笔记', tag: 'Course'},
+      {label: 'Physics', to: '/notes/course/physics/intro', tag: 'Course'},
+      {label: 'Engineering Graphics', to: '/notes/course/engineering-graphics/intro', tag: 'Course'},
     ],
   },
 ];

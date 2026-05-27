@@ -30,12 +30,36 @@ const sidebars: SidebarsConfig = {
       label: 'Course',
       link: {
         type: 'doc',
-        id: 'math-physics/intro',
+        id: 'course/intro',
       },
       items: [
-        'math-physics/calculus',
-        'math-physics/engineering-physics',
-        'math-physics/engineering-drawing',
+        {
+          type: 'category',
+          label: 'Calculus',
+          link: {
+            type: 'doc',
+            id: 'course/calculus/intro',
+          },
+          items: ['course/calculus/拉格朗日乘数法学习笔记'],
+        },
+        {
+          type: 'category',
+          label: 'Physics',
+          link: {
+            type: 'doc',
+            id: 'course/physics/intro',
+          },
+          items: [],
+        },
+        {
+          type: 'category',
+          label: 'Engineering Graphics',
+          link: {
+            type: 'doc',
+            id: 'course/engineering-graphics/intro',
+          },
+          items: [],
+        },
       ],
     },
   ],

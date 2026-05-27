@@ -1,8 +1,8 @@
 ---
-title: Calculus 微积分
+title: Calculus
 ---
 
-# Calculus 微积分
+# Calculus
 
 本页用于整理微积分中的核心概念和应用场景。
 
@@ -14,8 +14,3 @@ title: Calculus 微积分
 - 梯度 gradient
 - 方向导数 directional derivative
 - 全微分 total differential
-
-## 待补充
-
-- TODO: 补充课程笔记和例题。
-- TODO: 补充与机器人控制相关的应用。
